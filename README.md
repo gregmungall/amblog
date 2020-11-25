@@ -14,12 +14,12 @@ and staff. Some specific features include:
 -   **Search/sort capability:** The site allows the user to search and sort list
     views (drafts, posts and topics) using a search bar. For example, see
     class SearchView in
-    [views.py](https://github.com/gjmungo/amblog/blob/main/blog/views.py).
+    [views.py](https://github.com/GregMungall/amblog/blob/main/blog/views.py).
 -   **Saving images in PK folder:** The site saves images uploaded by staff in
     directories that includes the post PK (primary key). As the post PK is
     assigned by the database, this requires saving the post and then moving
     the image into a new directory. See class Post in
-    [models.py](https://github.com/gjmungo/amblog/blob/main/blog/models.py).
+    [models.py](https://github.com/GregMungall/amblog/blob/main/blog/models.py).
 -   **Error report emails:** The site will email the site admin if there are
     server or broken link errors.
 -   **Social login:** The site uses
