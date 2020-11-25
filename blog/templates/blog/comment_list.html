@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- App CSS -->
+<link rel="stylesheet" href="{% static 'blog/css/master.css' %}">
+
+<div class="px-lg-5 mx-lg-5">
+  <div class="px-lg-5 mx-lg-5">
+
+    <div id="detail-heading">
+      <a class="text-dark" href="{% url 'blog:post-detail' pk=view.kwargs.pk %}">
+        <h1>{{ comments.1.post.title }}</h1>
+      </a>
+      <h2>All comments:</h2>
+    </div>
+
+    <div class="mb-3">
+      {% for comment in comments %}
+      {% include "blog/_comment.html" %}
+      {% endfor %}
+    </div>
+
+    {% include "blog/_pagination.html" %}
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<div class="col px-2 col-6 col-md-3 d-flex flex-column h-100" id="list">
+
+  <a class="text-dark" href="{% url 'blog:post-detail' post.pk %}">
+
+    <div class="thumbnail">
+      <img class="p-0" src={% if post.image %}"{{ post.image.url }}"{% endif %} alt="">
+    </div>
+
+    <h1 class="m-0">{{ post.title }}</h1>
+
+  </a>
+
+  {% if post.publish_date %}
+  <h2 class="m-0">{{ post.publish_date|date:"jS M Y" }}</h2>
+  {% else %}
+  <h2 class="m-0">Created date: {{ post.created_date }}</h2>
+  {% endif %}
+
+  <h3 class="mt-0">Tags:
+    {% for tag in post.tags.all %}
+    <a href="{% url 'blog:tag-overview' slug=tag.slug %}" class="badge badge-dark">{{ tag }}</a>
+    {% endfor %}
+  </h3>
+
+  <p class="mb-2">{{ post.subheading }}</p>
+
+</div>

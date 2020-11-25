@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!-- App CSS -->
+<link rel="stylesheet" href="{% static 'blog/css/master.css' %}">
+
+<div class="my-3">
+
+  <div id="detail-heading">
+    {% if post %}
+    <h1>Edit post</h1>
+    {% else %}
+    <h1>New post</h1>
+    {% endif %}
+  </div>
+
+  {% if post.created_date %}
+  <p class="small text-muted">Created on: <strong>{{ post.created_date }}</strong><br>
+    {% endif %}
+    {% if post.edited_date %}
+    Updated on: <strong>{{ post.edited_date }}</strong><br>
+    {% endif %}
+    {% if post.publish_date %}
+    Published on: <strong>{{ post.publish_date }}</strong><br>
+    {% endif %}
+  </p>
+
+  <form id="entry" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form|crispy }}
+    {% if post.publish_date %}
+    <button type="submit" class="btn btn-dark rounded-0">Save changes</button>
+    {% else %}
+    <button type="submit" class="btn btn-dark rounded-0">Save draft and view</button>
+    {% endif %}
+    {% if post.created_date %}
+    <a class="btn btn-secondary rounded-0" href="{% url 'blog:post-detail' pk=post.pk %}" class="text-light">Cancel</a>
+    {% else %}
+    <a class="btn btn-secondary rounded-0" href={% if post.created_date %}"{% url 'blog:post-detail' pk=post.pk %}"{% else %}"{% url 'blog:landing' %}"{% endif %}"{% url 'blog:landing' %}" class="text-light">Cancel</a>
+    {% endif %}
+  </form>
+
+</div>
+
+{% endblock %}

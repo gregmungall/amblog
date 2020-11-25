@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!-- App CSS -->
+<link rel="stylesheet" href="{% static 'blog/css/master.css' %}">
+
+<div class="my-3">
+
+  <div id="detail-heading">
+    {% if tag %}
+    <h1>Edit tag</h1>
+    {% else %}
+    <h1>New tag</h1>
+    {% endif %}
+  </div>
+
+  <form id="entry" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.media}}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-dark rounded-0">Save</button>
+    <a class="btn btn-secondary rounded-0" href={% if tag %}"{% url 'blog:tag-overview' slug=tag.slug %}"{% else %}"{% url 'blog:landing' %}"{% endif %}"{% url 'blog:landing' %}">Cancel</a>
+  </form>
+
+</div>
+
+{% endblock %}

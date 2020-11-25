@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- App CSS -->
+<link rel="stylesheet" href="{% static 'blog/css/master.css' %}">
+
+<div class="px-lg-5 mx-lg-5 p-3">
+  <div class="post-body px-lg-5 mx-lg-5">
+
+    <div id="detail-heading">
+      <h1>Edit comment</h1>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <p>Created on: {{ comment.created_date }}
+        {% if comment.edited_date %}
+        <br>Edited on: {{ comment.edited_date }}
+        {% endif %}
+      </p>
+      <button class="btn btn-dark rounded-0" type="submit" class="">Save changes</button>
+      <a class="btn btn-secondary rounded-0" href="{% url 'blog:post-detail' pk=comment.post.pk %}">Cancel</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

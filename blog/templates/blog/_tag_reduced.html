@@ -1,0 +1,16 @@
+<div class="col px-2 col-6 col-md-3 d-flex flex-column h-100" id="list">
+
+  <a class="text-dark" href="{% url 'blog:tag-overview' slug=tag.slug %}">
+
+    <div class="thumbnail">
+      <img class="p-0" src={% if tag.image %}"{{ tag.image.url }}"{% endif %} alt="">
+    </div>
+
+    <h1 class="m-0">{{ tag.name }}</h1>
+
+  </a>
+
+  <h2 class="mt-0">Number of posts: {{ tag.num_posts }}</h2>
+  <p class="mb-2">{{ tag.subheading }}</p>
+
+</div>

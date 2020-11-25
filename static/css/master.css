@@ -1,0 +1,122 @@
+/* ### All ### */
+body {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+/* ### Brand styling ### */
+.brand #primary {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 2em;
+  letter-spacing: -0.08em;
+  color: #000000;
+}
+
+@media (max-width: 767px) {
+  .brand #primary {
+    font-size: 1.5em;
+  }
+}
+
+.brand #pipe {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-weight: 300;
+  font-size: 2em;
+  letter-spacing: -2px;
+  color: #000000;
+}
+
+.brand #secondary {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-weight: 400;
+  line-height: 1.1em;
+  display: inline-block;
+  font-size: 0.9em;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+/* ### Navbar ### */
+.navbar {
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.fa-search {
+  font-size: 1.5em;
+  color: #000000;
+}
+
+.nav-item {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-size: 1em;
+}
+
+#user-display {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-size: 1em;
+  margin-bottom: 0px;
+  margin-right: 16px;
+  text-align: right;
+}
+
+/* ### Footer ### */
+.footer {
+  margin: auto auto;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    font-size: 0.8em;
+  }
+}
+
+/* ### Info pages ### */
+div#info-pages h1 {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-weight: 400;
+}
+
+div#info-pages h2 {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-weight: 400;
+}
+
+div#info-pages p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ### About page ### */
+img#about-main {
+  width: 225px;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  img#about-main {
+    width: 100%;
+  }
+}
+
+div#about h1 {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-weight: 400;
+}
+
+div#about h2 {
+  font-family: 'Fira Sans Extra Condensed', sans-serif;
+  font-weight: 400;
+}
+
+div#about p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+div.bg-grey{
+  background-color: rgb(211,211,211);
+}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- App CSS -->
+<link rel="stylesheet" href="{% static 'blog/css/master.css' %}">
+
+<div id="landing">
+
+  <div class="row mx-n2 py-3">
+    <div class="col px-2 col-12 col-md-6">
+      <img id="landing-main" src="{% static "website_pictures/MB2_MU_28_square.jpg" %}" alt="">
+    </div>
+    <div class="col px-2 col-12 col-md-6 d-flex flex-column justify-content-center">
+      <h2>Welcome to my blog...</h2>
+      <h1>My thoughts and ideas as we enter a new age of sustainability</h1>
+      <p class="mb-0"><a class="text-dark" href="{% url 'about' %}">About me</a></p>
+    </div>
+  </div>
+
+  <div class="row m-0 border-top">
+    <h3 class="col-6 p-0 m-0 text-left">My recent posts:</h4>
+    <h3 class="col-6 p-0 m-0 text-right"><a class="text-dark" href="{% url 'blog:post-search' %}">All <i class="fas fa-angle-double-right"></i></a></h4>
+  </div>
+
+  <div class="row mx-n2 py-1">
+    {% for post in posts %}
+    {% include "blog/_post_reduced.html" %}
+    {% endfor %}
+  </div>
+
+  <div class="row m-0 border-top">
+    <h3 class="col-6 p-0 m-0 text-left">Topics I talk about:</h3>
+    <h3 class="col-6 p-0 m-0 text-right"><a class="text-dark" href="{% url 'blog:tag-list' %}">All <i class="fas fa-angle-double-right"></i></a></h3>
+  </div>
+
+  <div class="row mx-n2 py-1">
+    {% for tag in tags %}
+    {% include "blog/_tag_reduced.html" %}
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}
