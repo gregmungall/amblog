@@ -40,11 +40,10 @@ class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(allow_unicode=True, unique=True)  # Used for URLs.
     subheading = models.TextField()
-
     # Callable upload path.
     image = models.ImageField(blank=True, upload_to=tag_photo_path)
-
-    overview = RichTextField()  # WYSIWYG rich text editor field (CKEditor).
+    # WYSIWYG rich text editor field (CKEditor).
+    overview = RichTextField()
 
     def save(self, *args, **kwargs):
         """
@@ -71,10 +70,8 @@ class Post(models.Model):
     title = models.CharField(max_length=100, unique=True)
     tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
     subheading = models.TextField(blank=True, null=True)
-
     # Callable upload path.
     image = models.ImageField(blank=True, null=True, upload_to=post_photo_path)
-
     created_date = models.DateTimeField(default=timezone.now, editable=False)
     publish_date = models.DateTimeField(blank=True, null=True)
     edited_date = models.DateTimeField(blank=True, null=True)

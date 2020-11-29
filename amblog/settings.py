@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-# If running in a dev environment, set env variable DJANGO_DEVELOPMENT = True
+# If running in a dev environment, set env variable
+# DJANGO_DEVELOPMENT = True
 
 import os
 from pathlib import Path
@@ -25,7 +26,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False
 
 # Instance IP to allow health checks
-ALLOWED_HOSTS = ['alison-mungall.co.uk', 'www.alison-mungall.co.uk', os.environ['INSTANCE_IP']]
+ALLOWED_HOSTS = ['alison-mungall.co.uk',
+                 'www.alison-mungall.co.uk',
+                 os.environ['INSTANCE_IP']]
 
 # HTTPS settings
 SESSION_COOKIE_SECURE = True
@@ -44,7 +47,7 @@ EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ADMINS = [
-        (os.environ['ADMIN_1_NAME'], os.environ['ADMIN_1_EMAIL']),
+    (os.environ['ADMIN_1_NAME'], os.environ['ADMIN_1_EMAIL']),
 ]
 MANAGERS = ADMINS
 
@@ -191,12 +194,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # CKEditor
 CKEDITOR_CONFIGS = {
     'default': {
-    'width':'100%',
-    'height': 600,
+        'width': '100%',
+        'height': 600,
     },
 }
 
-# Override production variables if DJANGO_DEVELOPMENT env variable is set
+# Override production variables if DJANGO_DEVELOPMENT env variable True
 if os.environ.get('DJANGO_DEVELOPMENT'):
     print("DEV SETTINGS ACTIVE")
     from .settings_dev import *

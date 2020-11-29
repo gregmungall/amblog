@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
 
+# Serve static files during dev
 urlpatterns = [
     path('__site-admin__/', admin.site.urls),
     # Include Python-Social-Auth URLs
@@ -26,10 +27,8 @@ urlpatterns = [
     # Include blog app URLs
     path('', include('blog.urls', namespace='blog')),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
-    path('privacy-policy/', TemplateView.as_view(template_name='privacy_policy.html'),
-         name='privacy-policy'),
-    path('cookie-policy/', TemplateView.as_view(template_name='cookie_policy.html'),
-         name='cookie-policy'),
-    path('disclaimer/', TemplateView.as_view(template_name='disclaimer.html'),
-         name='disclaimer'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Serve static files during dev
+    path('privacy-policy/', TemplateView.as_view(template_name='privacy_policy.html'), name='privacy-policy'),
+    path('cookie-policy/', TemplateView.as_view(template_name='cookie_policy.html'), name='cookie-policy'),
+    path('disclaimer/', TemplateView.as_view(template_name='disclaimer.html'), name='disclaimer'),
+] + (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
+     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

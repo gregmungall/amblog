@@ -93,7 +93,7 @@ class SearchPostForm(forms.Form):
 
     # Set tag choices from database.
     tag_input = forms.ModelChoiceField(label='Topic', queryset=models.Tag.objects.all(),
-        empty_label="All", to_field_name="name", required=False)
+                                       empty_label="All", to_field_name="name", required=False)
 
     order_input = forms.ChoiceField(
         label='Sort', choices=((0, 'New'), (1, 'Old')))
@@ -119,7 +119,7 @@ class SearchDraftForm(forms.Form):
 
     # Set tag choices from database.
     tag_input = forms.ModelChoiceField(label='Topic', queryset=models.Tag.objects.all(),
-        empty_label="All", to_field_name="name", required=False)
+                                       empty_label="All", to_field_name="name", required=False)
 
     order_input = forms.ChoiceField(
         label='Sort', choices=((0, 'New'), (1, 'Old')))
