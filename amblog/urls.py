@@ -30,5 +30,4 @@ urlpatterns = [
     path('privacy-policy/', TemplateView.as_view(template_name='privacy_policy.html'), name='privacy-policy'),
     path('cookie-policy/', TemplateView.as_view(template_name='cookie_policy.html'), name='cookie-policy'),
     path('disclaimer/', TemplateView.as_view(template_name='disclaimer.html'), name='disclaimer'),
-] + (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +
-     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+]
