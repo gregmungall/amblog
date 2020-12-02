@@ -29,7 +29,7 @@ class StaffRequiredMixin(UserPassesTestMixin):
 ### LANDING VIEWS ###
 class LandingPage(generic.TemplateView):
     """
-    Landing page view displaying 4 most recent posts and 4 most posted topics/tags.
+    Landing page displaying 4 most recent posts and 4 most posted topics.
     """
     template_name = 'blog/landing.html'
 
@@ -38,17 +38,18 @@ class LandingPage(generic.TemplateView):
 
         # Add tags context with 4 most posted topics
         context['tags'] = models.Tag.objects.annotate(
-            num_posts = Count('posts')).order_by('-num_posts')[:4]
+            num_posts=Count('posts')).order_by('-num_posts')[:4]
 
         # Add posts context with 4 most recent posts
         context['posts'] = models.Post.objects.filter(
-            publish_date__isnull = False).order_by('-publish_date')[:4]
+            publish_date__isnull=False).order_by('-publish_date')[:4]
 
         return context
 
 
 ### POST VIEWS ###
-class PostCreateView(StaffRequiredMixin, SuccessMessageMixin, generic.CreateView):
+class PostCreateView(StaffRequiredMixin, SuccessMessageMixin,
+                     generic.CreateView):
     """
     Post create view accessible by any user with staff privileges.
     """
@@ -68,7 +69,7 @@ class PostCreateView(StaffRequiredMixin, SuccessMessageMixin, generic.CreateView
 
 class PostDetailView(View):
     """
-    Post detail view selects CBV dependent on the request HTTP method (POST/GET).
+    Post detail selects CBV depending on the request HTTP method (POST/GET).
     """
 
     def get(self, *args, **kwargs):
@@ -88,7 +89,7 @@ class PostDetailView(View):
 
 class PostDisplay(generic.DetailView):
     """
-    GET method CBV for PostDetailView. Displays post, comments and comment form (permission dependent).
+    GET method for PostDetailView. Displays post, comments and comment form.
     """
     model = models.Post
 
@@ -113,7 +114,7 @@ class PostDisplay(generic.DetailView):
 
 class SearchView(generic.ListView):
     """
-    List view of all posts with added functionality to search, filter and sort.
+    List view of all posts with search, filter and sort functionality.
     """
     template_name = 'blog/search.html'
     context_object_name = "posts"
@@ -139,7 +140,7 @@ class SearchView(generic.ListView):
 
             # Chain queryset dependent on user search form input.
             if tag_filter is not None:
-                queryset = queryset.filter(tags__name__iexact=tag_filter)
+                queryset = queryset.filter(tags__name__iexact=str(tag_filter))
             if post_filter is not None:
                 queryset = queryset.filter(title__icontains=post_filter)
             if order_by == '0':
@@ -160,8 +161,10 @@ class SearchView(generic.ListView):
                 queryset = models.Post.objects.filter(publish_date__isnull=False).filter(
                     tags__slug__iexact=self.kwargs['slug']).order_by('-publish_date')
 
-                self.search_form = self.search_form({'tag_input': models.Tag.objects.get(slug=self.kwargs['slug']),
-                                                     'order_input': 0})
+                self.search_form = self.search_form({
+                    'tag_input': models.Tag.objects.get(slug=self.kwargs['slug']),
+                    'order_input': 0
+                })
 
             # If accessing the URL slug kwarg throws an exception (i.e. the
             # pre-search URL has not been used to access the view) set queryset
@@ -183,7 +186,7 @@ class SearchView(generic.ListView):
 
 class UserDraftListView(StaffRequiredMixin, generic.ListView):
     """
-    List view of all of the user's drafts with added functionality to search, filter and sort.
+    List view of user's drafts with search, filter and sort functionality.
     """
     template_name = 'blog/user_draft_list.html'
     context_object_name = "posts"
@@ -216,11 +219,9 @@ class UserDraftListView(StaffRequiredMixin, generic.ListView):
 
                     # Chain queryset dependent on user search form input.
                     if tag_filter is not None:
-                        queryset = queryset.filter(
-                            tags__name__iexact=tag_filter)
+                        queryset = queryset.filter(tags__name__iexact=str(tag_filter))
                     if post_filter is not None:
-                        queryset = queryset.filter(
-                            title__icontains=post_filter)
+                        queryset = queryset.filter(title__icontains=post_filter)
                     if order_by == '0':
                         queryset = queryset.order_by('-created_date')
                     elif order_by == '1':
@@ -246,9 +247,10 @@ class UserDraftListView(StaffRequiredMixin, generic.ListView):
         return context
 
 
-class PostUpdateView(StaffRequiredMixin, SuccessMessageMixin, generic.UpdateView):
+class PostUpdateView(StaffRequiredMixin, SuccessMessageMixin,
+                     generic.UpdateView):
     """
-    Post update view accessible by user who has staff privileges and is post author.
+    Post update accessible by user with staff privileges and is post author.
     """
     form_class = forms.PostForm
     model = models.Post
@@ -258,7 +260,7 @@ class PostUpdateView(StaffRequiredMixin, SuccessMessageMixin, generic.UpdateView
 
     def get_object(self):
         """
-        If post does not exist raise HTTP 404 or if user is not post author raise HTTP 403. Otherwise returns post object.
+        Returns post object if post exists and user is post author.
         """
         obj = get_object_or_404(self.model, pk=self.kwargs.get('pk'))
         if obj.author == self.request.user:
@@ -276,7 +278,7 @@ class PostUpdateView(StaffRequiredMixin, SuccessMessageMixin, generic.UpdateView
 
 class PostDeleteView(StaffRequiredMixin, generic.DeleteView):
     """
-    Post delete view accessible by any user with staff privileges. Note any staff member can delete any post.
+    Post delete accessible by any user with staff privileges.
     """
     model = models.Post
     context_object_name = "post"
@@ -291,7 +293,8 @@ class PostDeleteView(StaffRequiredMixin, generic.DeleteView):
 
 
 ### TAG VIEWS ###
-class TagCreateView(StaffRequiredMixin, SuccessMessageMixin, generic.CreateView):
+class TagCreateView(StaffRequiredMixin, SuccessMessageMixin,
+                    generic.CreateView):
     """
     Tag create view accessible by any user with staff privileges.
     """
@@ -304,7 +307,7 @@ class TagCreateView(StaffRequiredMixin, SuccessMessageMixin, generic.CreateView)
 
 class TagOverviewView(generic.DetailView):
     """
-    Tag overview view displays tag detail including the 4 most recent published posts under that topic.
+    Displays tag detail and 4 most recent published posts under that topic.
     """
     model = models.Tag
 
@@ -320,7 +323,7 @@ class TagOverviewView(generic.DetailView):
 
 class TagListView(generic.ListView):
     """
-    List view of all tags with added functionality to search and sort.
+    List view of all tags with search and sort functionality.
     """
     template_name = 'blog/tag_list.html'
     context_object_name = "tags"
@@ -362,8 +365,8 @@ class TagListView(generic.ListView):
             # Set search_form values so they are displayed on post-search render.
             self.search_form = form
 
-        # If form data not submitted, set queryset to return all tags annoted with
-        # number of related posts and with highest number of related posts first.
+        # If data not submitted, set queryset to return all tags annoted with
+        # number of related posts and sorted by highest number of related posts.
         else:
             queryset = models.Tag.objects.annotate(
                 num_posts=Count('posts')).order_by('-num_posts')
@@ -379,7 +382,8 @@ class TagListView(generic.ListView):
         return context
 
 
-class TagUpdateView(StaffRequiredMixin, SuccessMessageMixin, generic.UpdateView):
+class TagUpdateView(StaffRequiredMixin, SuccessMessageMixin,
+                    generic.UpdateView):
     """
     Tag update view accessible by any user with staff privileges.
     """
@@ -417,7 +421,7 @@ class Comment(LoginRequiredMixin, SingleObjectMixin, generic.FormView):
 
     def form_valid(self, form_class):
         """
-        Additional to base, sets comment author to user and saves the post object to the comment.
+        Additional to base, sets author to user and saves post to comment.
         """
         form_class.instance.author = self.request.user
         form_class.instance.post = self.object
@@ -459,12 +463,14 @@ class CommentListView(generic.ListView):
         """
         Returns queryset with post comments and order with newest first.
         """
-        return models.Comment.objects.filter(post=self.kwargs.get('pk')).order_by("-created_date")
+        return (models.Comment.objects
+                .filter(post=self.kwargs.get('pk'))
+                .order_by("-created_date"))
 
 
 class CommentUpdateView(LoginRequiredMixin, generic.UpdateView):
     """
-    Comment update view accessible by user who is logged in and is comment author.
+    Comment update accessible user who is logged in and is comment author.
     """
     form_class = forms.CommentForm
     model = models.Comment
@@ -481,7 +487,7 @@ class CommentUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def form_valid(self, form_class):
         """
-        Additional to base, sets comment edited date to current date and, on success, displays message on base template.
+        Additional to base, sets edited date to current and displays message.
         """
         self.object.edited_date = timezone.now()
         messages.success(self.request, "Comment was edited successfully!")
@@ -490,7 +496,7 @@ class CommentUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class CommentDeleteView(LoginRequiredMixin, generic.DeleteView):
     """
-    Comment delete view accessible by user who is logged in and is comment author.
+    Comment delete accessible by user who is comment author or staff.
     """
     model = models.Comment
 

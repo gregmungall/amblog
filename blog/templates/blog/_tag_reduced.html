@@ -3,7 +3,8 @@
   <a class="text-dark" href="{% url 'blog:tag-overview' slug=tag.slug %}">
 
     <div class="thumbnail">
-      <img class="p-0" src={% if tag.image %}"{{ tag.image.url }}"{% endif %} alt="">
+      <img class="p-0" src={% if tag.image %}"{{ tag.image.url }}"{% endif %}
+        alt="">
     </div>
 
     <h1 class="m-0">{{ tag.name }}</h1>

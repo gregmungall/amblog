@@ -24,8 +24,10 @@
     </div>
 
     {% if user.is_staff %}
-    <a class="btn btn-dark rounded-0" href="{% url 'blog:tag-update' slug=tag.slug %}">Edit</a>
-    <a class="btn btn-secondary rounded-0" href="{% url 'blog:tag-delete' slug=tag.slug %}">Delete</a>
+    <a class="btn btn-dark rounded-0"
+      href="{% url 'blog:tag-update' slug=tag.slug %}">Edit</a>
+    <a class="btn btn-secondary rounded-0"
+      href="{% url 'blog:tag-delete' slug=tag.slug %}">Delete</a>
     {% endif %}
 
   </div>
@@ -33,7 +35,9 @@
   <!-- Same formatting from landing page -->
   <div class="row m-0 border-top" id="landing">
     <h3 class="col-6 p-0 m-0 text-left">Recent posts:</h3>
-    <h3 class="col-6 p-0 m-0 text-right"><a class="text-dark" href="{% url 'blog:post-pre-search' slug=tag.slug %}">All <i class="fas fa-angle-double-right"></i></a></h3>
+    <h3 class="col-6 p-0 m-0 text-right"><a class="text-dark"
+        href="{% url 'blog:post-pre-search' slug=tag.slug %}">All <i
+          class="fas fa-angle-double-right"></i></a></h3>
   </div>
 
   <div class="row mx-n2 py-1">

@@ -15,10 +15,12 @@
     </p>
 
     {% if request.user == comment.author %}
-    <a class="btn btn-secondary btn-sm rounded-0 mb-3" href="{% url 'blog:comment-update' pk=comment.pk %}">Edit</a>
+    <a class="btn btn-secondary btn-sm rounded-0 mb-3"
+      href="{% url 'blog:comment-update' pk=comment.pk %}">Edit</a>
     {% endif %}
     {% if request.user == comment.author or request.user.is_staff %}
-    <a class="btn btn-secondary btn-sm rounded-0 mb-3" href="{% url 'blog:comment-delete' pk=comment.pk %}">Delete</a>
+    <a class="btn btn-secondary btn-sm rounded-0 mb-3"
+      href="{% url 'blog:comment-delete' pk=comment.pk %}">Delete</a>
     {% endif %}
   </div>
 

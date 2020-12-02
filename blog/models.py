@@ -1,4 +1,5 @@
-# django-cleanup app is used to delete images whenever the image field is changed.
+# django-cleanup app is used to delete images whenever the image field
+# is changed.
 
 import posixpath
 import urllib
@@ -19,7 +20,7 @@ User = get_user_model()
 
 def post_photo_path(instance, filename):
     """
-    Callable that sets the upload path dependent on if the post has been assigned a pk from the database.
+    Returns upload path depending on if the post has been assigned a pk.
     """
     if instance.pk is None:
         return 'post_pictures/tmp/{0}'.format(filename)
@@ -28,7 +29,7 @@ def post_photo_path(instance, filename):
 
 def tag_photo_path(instance, filename):
     """
-    Callable that sets the upload path for tag images.
+    Returns the upload path for tag images.
     """
     return 'tag_pictures/{0}/{1}'.format(instance.slug, filename)
 
@@ -38,7 +39,8 @@ class Tag(models.Model):
     Model for topic tags.
     """
     name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(allow_unicode=True, unique=True)  # Used for URLs.
+    # Used for URLs
+    slug = models.SlugField(allow_unicode=True, unique=True)
     subheading = models.TextField()
     # Callable upload path.
     image = models.ImageField(blank=True, upload_to=tag_photo_path)
@@ -80,7 +82,7 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Additonal to base, this saves the image in a dir that includes the post pk.
+        Additonal to base, saves the image in a dir that includes the post pk.
         """
 
         # In order to save the image in a directory named with the post pk,
@@ -97,7 +99,9 @@ class Post(models.Model):
         # If an image exists, check to see if the image is located in a tmp
         # directory. If yes, create a new directory using the post pk, move the
         # image, and remove the tmp directory.
-        if self.image and urllib.parse.urljoin(settings.MEDIA_URL, 'post_pictures/tmp') == posixpath.dirname(self.image.url):
+        if (self.image and
+                urllib.parse.urljoin(settings.MEDIA_URL, 'post_pictures/tmp')
+                == posixpath.dirname(self.image.url)):
 
             # Store the tmp file path.
             tmp_file = self.image.name

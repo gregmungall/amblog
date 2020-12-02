@@ -17,7 +17,8 @@
   </div>
 
   {% if post.created_date %}
-  <p class="small text-muted">Created on: <strong>{{ post.created_date }}</strong><br>
+  <p class="small text-muted">Created on:
+    <strong>{{ post.created_date }}</strong><br>
     {% endif %}
     {% if post.edited_date %}
     Updated on: <strong>{{ post.edited_date }}</strong><br>
@@ -34,12 +35,21 @@
     {% if post.publish_date %}
     <button type="submit" class="btn btn-dark rounded-0">Save changes</button>
     {% else %}
-    <button type="submit" class="btn btn-dark rounded-0">Save draft and view</button>
+    <button type="submit" class="btn btn-dark rounded-0">Save draft and
+      view</button>
     {% endif %}
     {% if post.created_date %}
-    <a class="btn btn-secondary rounded-0" href="{% url 'blog:post-detail' pk=post.pk %}" class="text-light">Cancel</a>
+    <a class="btn btn-secondary rounded-0"
+      href="{% url 'blog:post-detail' pk=post.pk %}">Cancel</a>
     {% else %}
-    <a class="btn btn-secondary rounded-0" href={% if post.created_date %}"{% url 'blog:post-detail' pk=post.pk %}"{% else %}"{% url 'blog:landing' %}"{% endif %}"{% url 'blog:landing' %}" class="text-light">Cancel</a>
+    <a class="btn btn-secondary rounded-0"
+      href=
+        {% if post.created_date %}
+        "{% url 'blog:post-detail' pk=post.pk %}"
+        {% else %}
+        "{% url 'blog:landing' %}"
+        {% endif %}
+    >Cancel</a>
     {% endif %}
   </form>
 

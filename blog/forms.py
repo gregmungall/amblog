@@ -92,8 +92,11 @@ class SearchPostForm(forms.Form):
     post_input = forms.CharField(max_length=100, required=False)
 
     # Set tag choices from database.
-    tag_input = forms.ModelChoiceField(label='Topic', queryset=models.Tag.objects.all(),
-                                       empty_label="All", to_field_name="name", required=False)
+    tag_input = forms.ModelChoiceField(label='Topic',
+                                       queryset=models.Tag.objects.all(),
+                                       empty_label="All",
+                                       to_field_name="name",
+                                       required=False)
 
     order_input = forms.ChoiceField(
         label='Sort', choices=((0, 'New'), (1, 'Old')))
@@ -102,8 +105,10 @@ class SearchPostForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         # Modify form HTML (classes set for bootstrap).
-        self.fields['post_input'].widget.attrs.update({'class': 'rounded-0 form-control form-control-md',
-                                                       'placeholder': "Search posts"})
+        self.fields['post_input'].widget.attrs.update({
+            'class': 'rounded-0 form-control form-control-md',
+            'placeholder': "Search posts"
+        })
         self.fields['tag_input'].widget.attrs.update(
             {'class': 'rounded-0 custom-select'})
         self.fields['order_input'].widget.attrs.update(
@@ -118,8 +123,11 @@ class SearchDraftForm(forms.Form):
         label='Search', max_length=100, required=False)
 
     # Set tag choices from database.
-    tag_input = forms.ModelChoiceField(label='Topic', queryset=models.Tag.objects.all(),
-                                       empty_label="All", to_field_name="name", required=False)
+    tag_input = forms.ModelChoiceField(label='Topic',
+                                       queryset=models.Tag.objects.all(),
+                                       empty_label="All",
+                                       to_field_name="name",
+                                       required=False)
 
     order_input = forms.ChoiceField(
         label='Sort', choices=((0, 'New'), (1, 'Old')))
@@ -128,8 +136,10 @@ class SearchDraftForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         # Modify form HTML (classes set for bootstrap).
-        self.fields['post_input'].widget.attrs.update({'class': 'rounded-0 form-control form-control-md',
-                                                       'placeholder': "Search drafts"})
+        self.fields['post_input'].widget.attrs.update({
+            'class': 'rounded-0 form-control form-control-md',
+            'placeholder': "Search drafts"
+        })
         self.fields['tag_input'].widget.attrs.update(
             {'class': 'rounded-0 custom-select'})
         self.fields['order_input'].widget.attrs.update(
@@ -140,7 +150,9 @@ class SearchTagForm(forms.Form):
     """
     Form used to obtain user inputs for searching all tags.
     """
-    name_input = forms.CharField(label='Search', max_length=100, required=False,
+    name_input = forms.CharField(label='Search',
+                                 max_length=100,
+                                 required=False,
                                  widget=forms.TextInput(attrs={'placeholder': "Search topics"}))
     order_input = forms.ChoiceField(label='Sort by', choices=(
         (0, 'Most posts'), (1, 'Least posts'), (2, 'A-Z'), (3, 'Z-A')))
@@ -149,7 +161,9 @@ class SearchTagForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         # Modify form HTML (classes set for bootstrap)
-        self.fields['name_input'].widget.attrs.update({'class': 'rounded-0 form-control form-control-md',
-                                                       'placeholder': "Search topics"})
+        self.fields['name_input'].widget.attrs.update({
+            'class': 'rounded-0 form-control form-control-md',
+            'placeholder': "Search topics"
+        })
         self.fields['order_input'].widget.attrs.update(
             {'class': 'rounded-0 custom-select'})

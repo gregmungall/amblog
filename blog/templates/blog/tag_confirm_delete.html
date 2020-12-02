@@ -6,7 +6,8 @@
     {% csrf_token %}
     <p>Are you sure you want to delete "{{ tag }}"?</p>
     <input class="btn btn-dark rounded-0" type="submit" value="Confirm">
-    <a class="btn btn-secondary rounded-0" href="{% url 'blog:tag-overview' slug=tag.slug %}">Cancel</a>
+    <a class="btn btn-secondary rounded-0"
+      href="{% url 'blog:tag-overview' slug=tag.slug %}">Cancel</a>
   </form>
 </div>
 

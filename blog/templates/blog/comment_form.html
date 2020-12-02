@@ -20,8 +20,10 @@
         <br>Edited on: {{ comment.edited_date }}
         {% endif %}
       </p>
-      <button class="btn btn-dark rounded-0" type="submit" class="">Save changes</button>
-      <a class="btn btn-secondary rounded-0" href="{% url 'blog:post-detail' pk=comment.post.pk %}">Cancel</a>
+      <button class="btn btn-dark rounded-0" type="submit" class="">Save
+        changes</button>
+      <a class="btn btn-secondary rounded-0"
+        href="{% url 'blog:post-detail' pk=comment.post.pk %}">Cancel</a>
     </form>
   </div>
 </div>

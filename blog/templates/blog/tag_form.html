@@ -21,7 +21,14 @@
     {{form.media}}
     {{form|crispy}}
     <button type="submit" class="btn btn-dark rounded-0">Save</button>
-    <a class="btn btn-secondary rounded-0" href={% if tag %}"{% url 'blog:tag-overview' slug=tag.slug %}"{% else %}"{% url 'blog:landing' %}"{% endif %}"{% url 'blog:landing' %}">Cancel</a>
+    <a class="btn btn-secondary rounded-0"
+      href=
+        {% if tag %}
+        "{% url 'blog:tag-overview' slug=tag.slug %}"
+        {% else %}
+        "{% url 'blog:landing' %}"
+        {% endif %}
+    >Cancel</a>
   </form>
 
 </div>
