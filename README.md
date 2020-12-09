@@ -24,7 +24,7 @@ and staff. Some specific features include:
     server or broken link errors.
 -   **Social login:** The site uses
     [Python Social Auth](https://github.com/python-social-auth) for user login.
-    LinkedIn was chosen as the social site due to this site being a  
+    LinkedIn was chosen as the social site due to this site being a
     professional blog, but more social sites may be added in the future.
 -   **Rich text editor:** The site uses
     [Django CKEditor](https://github.com/django-ckeditor/django-ckeditor) to
@@ -45,7 +45,7 @@ Regardless, the following measures have been taken to ensure the site
 is secure:
 -   **Argon2:** Used as the password hasher.
 -   **Amazon EC2 Security Groups:** Used as virtual firewalls to control
-    traffic to each instance. Restrict external access to the load
+    traffic to each instance. Public access is restricted to the load
     balancer only.
 -   **HTTPS:** The load balancer redirects HTTP requests to HTTPS
     ensuring encrypted communications only.
