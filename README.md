@@ -48,6 +48,6 @@ is secure:
     traffic to each instance. Public access is restricted to the load
     balancer only.
 -   **HTTPS:** The load balancer redirects HTTP requests to HTTPS
-    ensuring encrypted communications only.
+    ensuring encrypted traffic only.
 -   **VPC:** All instances are in one VPC and the database is
     on a non-routable subnet and is not public.
