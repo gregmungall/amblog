@@ -1,7 +1,7 @@
 # Alison Mungall's blog (amblog)
 
 The website, previously at www.alison-mungall.co.uk, has been taken down. 
-Screenshots are in the [last section](##Screenshots) of the README.md.
+Highlights are in the [screenshots section](#screenshots).
 
 ## Overview
 
