@@ -1,6 +1,7 @@
 # Alison Mungall's blog (amblog)
 
-[Link to the site](https://alison-mungall.co.uk/)
+The website, previously at www.alison-mungall.co.uk, has been taken down. 
+Screenshots are in the [last section](##Screenshots) of the README.md.
 
 ## Overview
 
@@ -51,3 +52,20 @@ is secure:
     ensuring encrypted traffic only.
 -   **VPC:** All instances are in one VPC and the database is
     on a non-routable subnet and is not public.
+
+## Screenshots
+Below are highlights of the website.
+### Landing Page
+![Alt text](screenshots/landing_page.png?raw=true "Landing Page")
+### About Page
+![Alt text](screenshots/about_page.png?raw=true "About Page")
+### Post Page
+![Alt text](screenshots/post_page.png?raw=true "Post Page")
+### Post Search Page
+![Alt text](screenshots/post_search_page.png?raw=true "Post Search Page")
+### Topic Tag Overview Page
+![Alt text](
+    screenshots/topic_tag_overview_page.png?raw=true "Topic Tag Overview Page")
+### Topic Tag Search Page
+![Alt text](
+    screenshots/topic_tag_search_page.png?raw=true "Topic Tag Search Page")
