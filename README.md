@@ -61,6 +61,8 @@ Below are highlights of the website.
 ![Alt text](screenshots/about_page.png?raw=true "About Page")
 ### Post Page
 ![Alt text](screenshots/post_page.png?raw=true "Post Page")
+### New Post Page
+![Alt text](screenshots/new_post_page.png?raw=true "New Post Page")
 ### Post Search Page
 ![Alt text](screenshots/post_search_page.png?raw=true "Post Search Page")
 ### Topic Tag Overview Page
